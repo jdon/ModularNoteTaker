@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,44 +11,52 @@ using System.Windows.Forms;
 
 namespace ModularNoteTaker
 {
-    public partial class NoteInterface : Form
+    public partial class 
+        NoteInterface : Form
     {
         private FileMan fm;
         private Note n;
         private bool b = true;
+        FontFamily[] fontFamilies;
 
         public NoteInterface(Note n, int index,FileMan fm)
         {
             InitializeComponent();
             this.fm = fm;
             this.n = n;
-            if(n.NoteContents != null)
+            if (n.NoteContents != null)
             {
-            NoteTextBox.Rtf = n.NoteContents;
+                try
+                {
+                    NoteTextBox.Rtf = n.NoteContents;
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
             }
         }
-        private void assesmentToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NoteInterface_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            //auto save of closing of form
+            n.NoteContents = NoteTextBox.Rtf;
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)
         {
             //save
             n.NoteContents = NoteTextBox.Rtf;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void FontButton_Click(object sender, EventArgs e)
         {
-            if (b)
+            // open font dialog and change the font selection
+            FontDialog fd = new FontDialog();
+            DialogResult result = fd.ShowDialog();
+            if (result == DialogResult.OK)
             {
-                NoteTextBox.SelectionFont = new Font(NoteTextBox.Font, FontStyle.Bold);
-                b = false;
-            }
-            else
-            {
-                NoteTextBox.SelectionFont = new Font(NoteTextBox.Font, FontStyle.Regular);
-                b = true;
+
+                NoteTextBox.SelectionFont = fd.Font;
             }
         }
     }

@@ -29,56 +29,25 @@
         private void InitializeComponent()
         {
             this.NoteTextBox = new System.Windows.Forms.RichTextBox();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.FontButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // NoteTextBox
             // 
-            this.NoteTextBox.Location = new System.Drawing.Point(13, 47);
+            this.NoteTextBox.AcceptsTab = true;
+            this.NoteTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.NoteTextBox.EnableAutoDragDrop = true;
+            this.NoteTextBox.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NoteTextBox.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.NoteTextBox.Location = new System.Drawing.Point(12, 45);
             this.NoteTextBox.Name = "NoteTextBox";
-            this.NoteTextBox.Size = new System.Drawing.Size(747, 515);
+            this.NoteTextBox.Size = new System.Drawing.Size(760, 515);
             this.NoteTextBox.TabIndex = 0;
             this.NoteTextBox.Text = "";
-            // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Location = new System.Drawing.Point(763, 47);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(21, 515);
-            this.vScrollBar1.TabIndex = 2;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(49, 16);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Bold";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(131, 16);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Italics";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(213, 16);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "underline";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
@@ -90,29 +59,37 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // SaveButton
             // 
-            this.button5.Location = new System.Drawing.Point(295, 16);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.SaveButton.Location = new System.Drawing.Point(12, 12);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 7;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // FontButton
+            // 
+            this.FontButton.Location = new System.Drawing.Point(93, 12);
+            this.FontButton.Name = "FontButton";
+            this.FontButton.Size = new System.Drawing.Size(75, 23);
+            this.FontButton.TabIndex = 8;
+            this.FontButton.Text = "Chnage font";
+            this.FontButton.UseVisualStyleBackColor = true;
+            this.FontButton.Click += new System.EventHandler(this.FontButton_Click);
             // 
             // NoteInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 574);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.vScrollBar1);
+            this.Controls.Add(this.FontButton);
+            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.NoteTextBox);
             this.Name = "NoteInterface";
             this.Text = "NoteInterface";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NoteInterface_FormClosing);
             this.ResumeLayout(false);
 
         }
@@ -120,11 +97,8 @@
         #endregion
 
         private System.Windows.Forms.RichTextBox NoteTextBox;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button FontButton;
     }
 }
