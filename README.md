@@ -1,5 +1,6 @@
 # ModularNoteTaker
 Second programming assignment, 1st year
+
 Copyright [2016] [Jonathan Donaldson]
 
 Licensed under the Apache License, Version 2.0 (the "License");
