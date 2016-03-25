@@ -161,8 +161,16 @@ namespace ModularNoteTaker
             Module CurrentModule = ModuleList[moduleindex];
             Debug.WriteLine("note amount" + CurrentModule.ModuleNotes.Count);
             Note n = CurrentModule.ModuleNotes[index];
-            NoteInterface ni = new NoteInterface(n, 0, FileManInstance);
-            ni.Show();
+            try
+            {
+                NoteInterface ni = new NoteInterface(n, 0, FileManInstance);
+                ni.Text = n.NoteName;
+                ni.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("The note you are trying to read is invalid or may be corrupted", "Error");
+            }
         }
 
         private void DeleteNoteButton_Click(object sender, EventArgs e)
