@@ -1,6 +1,6 @@
 ﻿namespace ModularNoteTaker
 {
-    partial class Form1
+    partial class ModularNoteTaker
     {
         /// <summary>
         /// Required designer variable.
@@ -209,8 +209,9 @@
             this.EditModuleButton.TabIndex = 5;
             this.EditModuleButton.Text = "View / Edit Module";
             this.EditModuleButton.UseVisualStyleBackColor = true;
+            this.EditModuleButton.Click += new System.EventHandler(this.EditModuleButton_Click);
             // 
-            // Form1
+            // ModularNoteTaker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -222,8 +223,8 @@
             this.Controls.Add(this.ModuleListBox);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "ModularNoteTaker";
+            this.Text = "Modular Note Taker";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

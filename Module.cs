@@ -15,9 +15,10 @@ namespace ModularNoteTaker
         public String ModuleLearningOutcomes { get; set; }
         public Assignment ModuleAssignment1 { get; set; }
         public Assignment ModuleAssignment2 { get; set; }
+        public Assignment ModuleAssignment3 { get; set; }
         public List<Note> ModuleNotes { get; set; }
 
-        public Module(String MoudleCode, String ModuleTitle, String ModuleSynopsis, String ModuleLearningOutcome, Assignment ModuleAssignment1, Assignment ModuleAssignment2, List<Note> Notes)
+        public Module(String MoudleCode, String ModuleTitle, String ModuleSynopsis, String ModuleLearningOutcome, Assignment ModuleAssignment1, Assignment ModuleAssignment2, Assignment ModuleAssignment3, List<Note> Notes)
         {
             this.MoudleCodeString = MoudleCode;
             this.ModuleTitle = ModuleTitle;
@@ -25,6 +26,7 @@ namespace ModularNoteTaker
             this.ModuleLearningOutcomes = ModuleLearningOutcome;
             this.ModuleAssignment1 = ModuleAssignment1;
             this.ModuleAssignment2 = ModuleAssignment2;
+            this.ModuleAssignment3 = ModuleAssignment3;
             if (Notes == null)
             {
                 //create empty list

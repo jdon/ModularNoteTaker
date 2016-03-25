@@ -13,11 +13,11 @@ using System.Windows.Forms;
 
 namespace ModularNoteTaker
 {
-    public partial class Form1 : Form
+    public partial class ModularNoteTaker : Form
     {
         FileMan FileManInstance;
         private List<Module> ModuleList;
-        public Form1()
+        public ModularNoteTaker()
         {
             InitializeComponent();
             FileManInstance = new FileMan();
@@ -42,7 +42,8 @@ namespace ModularNoteTaker
                 NoteListBox.DataSource = NoteItems;
                 List<string> AssignmentItems = new List<string>();
                 AssignmentItems.Add(CurrentModule.ModuleAssignment1.DueDate.ToShortDateString());
-                AssignmentItems.Add(CurrentModule.ModuleAssignment2.DueDate.ToShortDateString());
+                if (CurrentModule.ModuleAssignment2 != null) AssignmentItems.Add(CurrentModule.ModuleAssignment2.DueDate.ToShortDateString());
+                if (CurrentModule.ModuleAssignment3 != null) AssignmentItems.Add(CurrentModule.ModuleAssignment3.DueDate.ToShortDateString());
                 AssignmentListBox.DataSource = AssignmentItems;
             }
         }
@@ -70,22 +71,7 @@ namespace ModularNoteTaker
 
         private void ModuleListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ModuleListBox.Items.Count != 0)
-            {
-                int index = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());
-                updateModuleList();
-                Module CurrentModule = ModuleList[index];
-                List<string> NoteItems = new List<string>();
-                foreach (Note note in CurrentModule.ModuleNotes)
-                {
-                    NoteItems.Add(note.NoteName);
-                }
-                NoteListBox.DataSource = NoteItems;
-                List<string> AssignmentItems = new List<string>();
-                AssignmentItems.Add(CurrentModule.ModuleAssignment1.DueDate.ToShortDateString());
-                AssignmentItems.Add(CurrentModule.ModuleAssignment2.DueDate.ToShortDateString());
-                AssignmentListBox.DataSource = AssignmentItems;
-            }
+            updateSelectedModule();
         }
 
         private void savedDataToolStripMenuItem_Click(object sender, EventArgs e)
@@ -188,6 +174,23 @@ namespace ModularNoteTaker
                 NoteItems.Add(note.NoteName);
             }
             NoteListBox.DataSource = NoteItems;
+        }
+
+        private void EditModuleButton_Click(object sender, EventArgs e)
+        {
+            int index = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());
+            updateModuleList();
+            ModuleEditor me = new ModuleEditor(ModuleList[index]);
+            DialogResult rd = me.ShowDialog();
+            if (rd == DialogResult.OK)
+            {
+                List<string> Items = new List<string>();
+                foreach (Module m in FileManInstance.ModuleList1)
+                {
+                    Items.Add(m.MoudleCodeString + "-" + m.ModuleTitle);
+                }
+                ModuleListBox.DataSource = Items;
+            }
         }
     }
 }

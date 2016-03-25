@@ -11,15 +11,13 @@ namespace ModularNoteTaker
     {
         public DateTime CurrentDate { get; private set; }
         public DateTime DueDate { get; set; }
-        public String ModuleCode { get; set; }
-        private String Key;
+        public Boolean isTest { get; set; }
 
-        public Assignment(String ModuleCode, DateTime DueDate)
+        public Assignment(Boolean isTest, DateTime DueDate)
         {
-            this.ModuleCode = ModuleCode;
+            this.isTest = isTest;
             this.DueDate = DueDate;
             CurrentDate = DateTime.Now;
-            Key = String.Concat(ModuleCode,DueDate.ToString());
             Debug.WriteLine("");
         }
 

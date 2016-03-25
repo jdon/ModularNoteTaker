@@ -16,8 +16,6 @@ namespace ModularNoteTaker
     {
         private FileMan fm;
         private Note n;
-        private bool b = true;
-        FontFamily[] fontFamilies;
 
         public NoteInterface(Note n, int index,FileMan fm)
         {
@@ -38,7 +36,7 @@ namespace ModularNoteTaker
         }
         private void NoteInterface_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //auto save of closing of form
+            //auto save on closing of form
             n.NoteContents = NoteTextBox.Rtf;
         }
 

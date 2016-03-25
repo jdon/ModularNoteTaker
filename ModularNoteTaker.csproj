@@ -53,11 +53,11 @@
   <ItemGroup>
     <Compile Include="Assignment.cs" />
     <Compile Include="FileMan.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="ModularNoteTaker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ModularNoteTaker.Designer.cs">
+      <DependentUpon>ModularNoteTaker.cs</DependentUpon>
     </Compile>
     <Compile Include="InputDialog.cs">
       <SubType>Form</SubType>
@@ -66,6 +66,12 @@
       <DependentUpon>InputDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Module.cs" />
+    <Compile Include="ModuleEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ModuleEditor.Designer.cs">
+      <DependentUpon>ModuleEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Note.cs" />
     <Compile Include="NoteInterface.cs">
       <SubType>Form</SubType>
@@ -75,11 +81,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="ModularNoteTaker.resx">
+      <DependentUpon>ModularNoteTaker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ModuleEditor.resx">
+      <DependentUpon>ModuleEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NoteInterface.resx">
       <DependentUpon>NoteInterface.cs</DependentUpon>
