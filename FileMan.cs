@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace ModularNoteTaker
@@ -57,17 +58,23 @@ namespace ModularNoteTaker
                 String ModuleLO4 = "";
                 String ModuleAssignment1 = "";
                 String ModuleAssignment2 = "";
+                String ModuleAssignment3 = "";
+                Assignment as1 = null;
+                Assignment as2 = null;
+                Assignment as3 = null;
                 if (TextFile[9].Contains("ASSIGNMENT"))
                 {
                     // two learning outcomes
                     ModuleAssignment1 = TextFile[10];
                     ModuleAssignment2 = TextFile[11];
+                    ModuleAssignment3 = TextFile[12];
                 }
                 else if(TextFile[10].Contains("ASSIGNMENT"))
                 {
                     ModuleLO3 = TextFile[9];
                     ModuleAssignment1 = TextFile[11];
                     ModuleAssignment2 = TextFile[12];
+                    ModuleAssignment3 = TextFile[13];
                     // three learning outcomes
                 }
                 else if (TextFile[11].Contains("ASSIGNMENT"))
@@ -76,26 +83,48 @@ namespace ModularNoteTaker
                     ModuleLO4 = TextFile[10];
                     ModuleAssignment1 = TextFile[12];
                     ModuleAssignment2 = TextFile[13];
+                    ModuleAssignment3 = TextFile[14];
                     // four learning outcomes
                 }
-                String ModuleLearningOutcomes = String.Concat(ModuleLO1,"\n",ModuleLO2, "\n", ModuleLO3, "\n", ModuleLO4);
-                /*
-                Debug.WriteLine(ModuleCode);
-                Debug.WriteLine(ModuleTitle);
-                Debug.WriteLine(ModuleSynopsis);
-                Debug.WriteLine(ModuleLO1);
-                Debug.WriteLine(ModuleLO2);
-                Debug.WriteLine(ModuleLO3);
-                Debug.WriteLine(ModuleLO4);
-                Debug.WriteLine(ModuleAssignment1);
-                Debug.WriteLine(ModuleAssignment2);
-                */
-                DateTime date = new DateTime(2017, 1, 18);
-                Assignment as1 = new Assignment(ModuleCode, date);
-                Assignment as2 = new Assignment(ModuleCode, date);
-                Module m = new Module(ModuleCode,ModuleTitle,ModuleSynopsis,ModuleLearningOutcomes, as1, as2,null);
+                List<String> assignments = new List<string>();
+                assignments.Add(ModuleAssignment1);
+                assignments.Add(ModuleAssignment2);
+                assignments.Add(ModuleAssignment3);
+                int i = 0;
+                foreach (String assignment in assignments)
+                {
+                    i++;
+                    Regex regex = new Regex(@"[0-9]{2}\/[0-9]{2}\/[0-9]{4}");
+                    if (assignment == null) break;
+                    Match match = regex.Match(assignment);
+                    Debug.WriteLine("loop");
+                    if (match.Success)
+                    {
+                        Debug.WriteLine("match");
+                        bool istest = false;
+                        DateTime date= Convert.ToDateTime(match.Value);
+                        if (ModuleAssignment1.Contains("w/c"))
+                        {
+                            istest = true;
+                        }
+                        if (i == 1)
+                        {
+                            as1 = new Assignment(istest, date);
+                        }
+                        if (i == 2)
+                        {
+                            as2 = new Assignment(istest, date);
+                        }
+                        if (i == 3)
+                        {
+                            as3 = new Assignment(istest, date);
+                        }
+                    }
+                }
+                String ModuleLearningOutcomes = ModuleLO1 + "\r\n" + ModuleLO2 + "\r\n" + ModuleLO3 + "\r\n" + ModuleLO4;
+ 
+                Module m = new Module(ModuleCode,ModuleTitle,ModuleSynopsis,ModuleLearningOutcomes, as1, as2,as3,null);
                 ModuleList1.Add(m);
-                //Debug.WriteLine(contents);
             }
 
         }
