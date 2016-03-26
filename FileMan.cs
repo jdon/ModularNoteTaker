@@ -31,6 +31,8 @@ namespace ModularNoteTaker
         {
             foreach (string file in Directory.EnumerateFiles(Dir, "*.txt"))
             {
+                List<String> AssignmentStrings = new List<string>();
+                List<Assignment> ModuleAssgnments = new List<Assignment>();
                 int counter = 0;
                 string line;
                 String[] TextFile = new String[20];
@@ -62,9 +64,19 @@ namespace ModularNoteTaker
                 Assignment as1 = null;
                 Assignment as2 = null;
                 Assignment as3 = null;
+                AssignmentStrings.Add(TextFile[10]);
+                AssignmentStrings.Add(TextFile[11]);
+                AssignmentStrings.Add(TextFile[12]);
+                AssignmentStrings.Add(TextFile[13]);
+                AssignmentStrings.Add(TextFile[14]);
+                AssignmentStrings.Add(TextFile[15]);
+                /*
                 if (TextFile[9].Contains("ASSIGNMENT"))
                 {
                     // two learning outcomes
+                    AssignmentStrings.Add(TextFile[10]);
+                    AssignmentStrings.Add(TextFile[11]);
+                    AssignmentStrings.Add(TextFile[12]);
                     ModuleAssignment1 = TextFile[10];
                     ModuleAssignment2 = TextFile[11];
                     ModuleAssignment3 = TextFile[12];
@@ -72,6 +84,9 @@ namespace ModularNoteTaker
                 else if(TextFile[10].Contains("ASSIGNMENT"))
                 {
                     ModuleLO3 = TextFile[9];
+                    AssignmentStrings.Add(TextFile[11]);
+                    AssignmentStrings.Add(TextFile[12]);
+                    AssignmentStrings.Add(TextFile[13]);
                     ModuleAssignment1 = TextFile[11];
                     ModuleAssignment2 = TextFile[12];
                     ModuleAssignment3 = TextFile[13];
@@ -81,49 +96,37 @@ namespace ModularNoteTaker
                 {
                     ModuleLO3 = TextFile[9];
                     ModuleLO4 = TextFile[10];
+                    AssignmentStrings.Add(TextFile[12]);
+                    AssignmentStrings.Add(TextFile[13]);
+                    AssignmentStrings.Add(TextFile[14]);
                     ModuleAssignment1 = TextFile[12];
                     ModuleAssignment2 = TextFile[13];
                     ModuleAssignment3 = TextFile[14];
                     // four learning outcomes
                 }
-                List<String> assignments = new List<string>();
-                assignments.Add(ModuleAssignment1);
-                assignments.Add(ModuleAssignment2);
-                assignments.Add(ModuleAssignment3);
-                int i = 0;
-                foreach (String assignment in assignments)
+                */
+                foreach (String assignmentstring in AssignmentStrings)
                 {
-                    i++;
-                    Regex regex = new Regex(@"[0-9]{2}\/[0-9]{2}\/[0-9]{4}");
-                    if (assignment == null) break;
-                    Match match = regex.Match(assignment);
+                    Regex regex = new Regex(@"((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$");
+                    if (assignmentstring == null) break;
+                    Match match = regex.Match(assignmentstring);
                     Debug.WriteLine("loop");
                     if (match.Success)
                     {
                         Debug.WriteLine("match");
+                        Debug.WriteLine(assignmentstring);
                         bool istest = false;
                         DateTime date= Convert.ToDateTime(match.Value);
-                        if (ModuleAssignment1.Contains("w/c"))
+                        if (assignmentstring.Contains("w/c"))
                         {
                             istest = true;
                         }
-                        if (i == 1)
-                        {
-                            as1 = new Assignment(istest, date);
-                        }
-                        if (i == 2)
-                        {
-                            as2 = new Assignment(istest, date);
-                        }
-                        if (i == 3)
-                        {
-                            as3 = new Assignment(istest, date);
-                        }
+                        ModuleAssgnments.Add(new Assignment(istest, date, new Note(date.ToString(), "")));
                     }
                 }
                 String ModuleLearningOutcomes = ModuleLO1 + "\r\n" + ModuleLO2 + "\r\n" + ModuleLO3 + "\r\n" + ModuleLO4;
  
-                Module m = new Module(ModuleCode,ModuleTitle,ModuleSynopsis,ModuleLearningOutcomes, as1, as2,as3,null);
+                Module m = new Module(ModuleCode,ModuleTitle,ModuleSynopsis,ModuleLearningOutcomes, ModuleAssgnments, null);
                 ModuleList1.Add(m);
             }
 

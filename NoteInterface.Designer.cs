@@ -48,6 +48,7 @@
             this.NoteTextBox.Size = new System.Drawing.Size(760, 515);
             this.NoteTextBox.TabIndex = 0;
             this.NoteTextBox.Text = "";
+            this.NoteTextBox.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.NoteTextBox_LinkClicked);
             // 
             // button1
             // 

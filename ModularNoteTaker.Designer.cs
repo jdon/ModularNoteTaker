@@ -132,6 +132,7 @@
             this.AssignmentListBox.Name = "AssignmentListBox";
             this.AssignmentListBox.Size = new System.Drawing.Size(434, 303);
             this.AssignmentListBox.TabIndex = 0;
+            this.AssignmentListBox.DoubleClick += new System.EventHandler(this.AssignmentListBox_DoubleClick);
             // 
             // NewModuleButton
             // 

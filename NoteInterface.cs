@@ -57,5 +57,10 @@ namespace ModularNoteTaker
                 NoteTextBox.SelectionFont = fd.Font;
             }
         }
+
+        private void NoteTextBox_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            new WebBrowserForm(e.LinkText).ShowDialog();
+        }
     }
 }

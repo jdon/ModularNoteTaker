@@ -12,18 +12,25 @@ namespace ModularNoteTaker
         public DateTime CurrentDate { get; private set; }
         public DateTime DueDate { get; set; }
         public Boolean isTest { get; set; }
+        public Note note { get; set; }
 
-        public Assignment(Boolean isTest, DateTime DueDate)
+        public Assignment(Boolean isTest, DateTime DueDate, Note n)
         {
             this.isTest = isTest;
             this.DueDate = DueDate;
+            this.note = n;
             CurrentDate = DateTime.Now;
             Debug.WriteLine("");
         }
 
-        private String getTimetoDueDate()
+        public double getTimetoDueDate()
         {
-            return (DueDate - CurrentDate).ToString();
+            double daysreamining = Math.Round((DueDate - CurrentDate).TotalDays);
+            if (daysreamining < 0)
+            {
+                return 0;
+            }
+            return daysreamining;
             //TODO return formatted string
         }
 

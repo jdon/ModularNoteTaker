@@ -12,3 +12,4 @@ C:\Users\jdon\Documents\Visual Studio 2015\Projects\ModularNoteTaker\ModularNote
 C:\Users\jdon\Documents\Visual Studio 2015\Projects\ModularNoteTaker\ModularNoteTaker\obj\Debug\ModularNoteTaker.InputDialog.resources
 C:\Users\jdon\documents\visual studio 2015\Projects\ModularNoteTaker\ModularNoteTaker\obj\Debug\ModularNoteTaker.ModularNoteTaker.resources
 C:\Users\jdon\documents\visual studio 2015\Projects\ModularNoteTaker\ModularNoteTaker\obj\Debug\ModularNoteTaker.ModuleEditor.resources
+C:\Users\jdon\documents\visual studio 2015\Projects\ModularNoteTaker\ModularNoteTaker\obj\Debug\ModularNoteTaker.WebBrowserForm.resources

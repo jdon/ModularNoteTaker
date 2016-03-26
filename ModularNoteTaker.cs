@@ -30,9 +30,10 @@ namespace ModularNoteTaker
         }
         private void updateSelectedModule()
         {
-            if (ModuleListBox.Items.Count != 0)
+            if (ModuleListBox.Items.Count >= 1)
             {
-                int index = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());
+                int index = ModuleListBox.SelectedIndex;
+                updateModuleList();
                 Module CurrentModule = ModuleList[index];
                 List<string> NoteItems = new List<string>();
                 foreach (Note note in CurrentModule.ModuleNotes)
@@ -41,9 +42,17 @@ namespace ModularNoteTaker
                 }
                 NoteListBox.DataSource = NoteItems;
                 List<string> AssignmentItems = new List<string>();
-                AssignmentItems.Add(CurrentModule.ModuleAssignment1.DueDate.ToShortDateString());
-                if (CurrentModule.ModuleAssignment2 != null) AssignmentItems.Add(CurrentModule.ModuleAssignment2.DueDate.ToShortDateString());
-                if (CurrentModule.ModuleAssignment3 != null) AssignmentItems.Add(CurrentModule.ModuleAssignment3.DueDate.ToShortDateString());
+                foreach (Assignment assignment in CurrentModule.ModuleAssignments)
+                {
+                    if (assignment.isTest)
+                    {
+                        AssignmentItems.Add("In class test on the" + assignment.DueDate.ToShortDateString() +"  "+ assignment.getTimetoDueDate() + " days remaining");
+                    }
+                    else
+                    {
+                        AssignmentItems.Add("Assignment due on the " + assignment.DueDate.ToShortDateString() + "  " + assignment.getTimetoDueDate() + " days remaining");
+                    }
+                }
                 AssignmentListBox.DataSource = AssignmentItems;
             }
         }
@@ -190,6 +199,27 @@ namespace ModularNoteTaker
                     Items.Add(m.MoudleCodeString + "-" + m.ModuleTitle);
                 }
                 ModuleListBox.DataSource = Items;
+            }
+        }
+
+        private void AssignmentListBox_DoubleClick(object sender, EventArgs e)
+        {
+            int index = AssignmentListBox.FindStringExact(AssignmentListBox.SelectedItem.ToString());
+            Debug.WriteLine(index);
+            int moduleindex = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());
+            Debug.WriteLine("Module Index" + moduleindex);
+            Module CurrentModule = ModuleList[moduleindex];
+            Debug.WriteLine("note amount" + CurrentModule.ModuleAssignments);
+            Note n = CurrentModule.ModuleAssignments[index].note;
+            try
+            {
+                NoteInterface ni = new NoteInterface(n, 0, FileManInstance);
+                ni.Text = n.NoteName;
+                ni.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The note you are trying to read is invalid or may be corrupted", "Error");
             }
         }
     }
