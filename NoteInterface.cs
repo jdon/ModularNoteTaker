@@ -33,11 +33,13 @@ namespace ModularNoteTaker
                     throw e;
                 }
             }
+            n.inUse = true;
         }
         private void NoteInterface_FormClosing(object sender, FormClosingEventArgs e)
         {
             //auto save on closing of form
             n.NoteContents = NoteTextBox.Rtf;
+            n.inUse = false;
         }
 
         private void SaveButton_Click(object sender, EventArgs e)

@@ -28,6 +28,7 @@ namespace ModularNoteTaker
             ModuleList = FileManInstance.ModuleList1;
 
         }
+
         private void updateSelectedModule()
         {
             if (ModuleListBox.Items.Count >= 1)
@@ -119,6 +120,12 @@ namespace ModularNoteTaker
             {
                 int index = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());
                 //updateModuleList();
+                Module CurrentModule = ModuleList[index];
+                if (CurrentModule.isNotesinUse())
+                {
+                    MessageBox.Show("A note for this module is currently in use, please close it.", "Error!");
+                    return;
+                }
                 ModuleList.RemoveAt(index);
                 //FileManInstance.ModuleList1 = ModuleList;
                 List<string> Items = new List<string>();
@@ -156,6 +163,11 @@ namespace ModularNoteTaker
             Module CurrentModule = ModuleList[moduleindex];
             Debug.WriteLine("note amount" + CurrentModule.ModuleNotes.Count);
             Note n = CurrentModule.ModuleNotes[index];
+            if (n.inUse)
+            {
+                MessageBox.Show("Note is in use!", "Error!");
+                return;
+            }
             try
             {
                 NoteInterface ni = new NoteInterface(n, 0, FileManInstance);
@@ -164,7 +176,7 @@ namespace ModularNoteTaker
             }
             catch(Exception ex)
             {
-                MessageBox.Show("The note you are trying to read is invalid or may be corrupted", "Error");
+                MessageBox.Show("The note you are trying to read is invalid or may be corrupted", "Error!");
             }
         }
 
@@ -173,9 +185,12 @@ namespace ModularNoteTaker
             int index = NoteListBox.FindStringExact(NoteListBox.SelectedItem.ToString());
             Debug.WriteLine(index);
             int moduleindex = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());
-            Debug.WriteLine("Module Index" + moduleindex);
             Module CurrentModule = ModuleList[moduleindex];
-            Debug.WriteLine("note amount" + CurrentModule.ModuleNotes.Count);
+            if (CurrentModule.ModuleNotes[index].inUse)
+            {
+                MessageBox.Show("Note is in use!", "Error!");
+                return;
+            }
             CurrentModule.ModuleNotes.RemoveAt(index);
             List<string> NoteItems = new List<string>();
             foreach (Note note in CurrentModule.ModuleNotes)
@@ -211,6 +226,11 @@ namespace ModularNoteTaker
             Module CurrentModule = ModuleList[moduleindex];
             Debug.WriteLine("note amount" + CurrentModule.ModuleAssignments);
             Note n = CurrentModule.ModuleAssignments[index].note;
+            if (n.inUse)
+            {
+                MessageBox.Show("Note is in use!", "Error!");
+                return;
+            }
             try
             {
                 NoteInterface ni = new NoteInterface(n, 0, FileManInstance);

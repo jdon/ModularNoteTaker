@@ -34,5 +34,18 @@ namespace ModularNoteTaker
                 this.ModuleNotes = Notes;
             }
         }
+
+        public Boolean isNotesinUse()
+        {
+            foreach (Note n in ModuleNotes)
+            {
+                if (n.inUse) return true;
+            }
+            foreach (Assignment a in ModuleAssignments)
+            {
+                if (a.note.inUse) return true;
+            }
+            return false;
+        }
     }
 }
