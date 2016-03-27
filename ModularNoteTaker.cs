@@ -46,11 +46,11 @@ namespace ModularNoteTaker
                 {
                     if (assignment.isTest)
                     {
-                        AssignmentItems.Add("In class test on the" + assignment.DueDate.ToShortDateString() +"  "+ assignment.getTimetoDueDate() + " days remaining");
+                        AssignmentItems.Add("In class test:  " + assignment.DueDate.ToShortDateString() +"  "+ assignment.getTimetoDueDate() + " days remaining");
                     }
                     else
                     {
-                        AssignmentItems.Add("Assignment due on the " + assignment.DueDate.ToShortDateString() + "  " + assignment.getTimetoDueDate() + " days remaining");
+                        AssignmentItems.Add("Assignment:  " + assignment.DueDate.ToShortDateString() + "  " + assignment.getTimetoDueDate() + " days remaining");
                     }
                 }
                 AssignmentListBox.DataSource = AssignmentItems;
