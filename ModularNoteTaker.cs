@@ -65,6 +65,11 @@ namespace ModularNoteTaker
 
         private void moduleFilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (ModuleList.Count != 0) // already modules loaded
+            {
+                MessageBox.Show("Modules already loaded!Please delete the current ones", "Error!");
+                return;
+            }
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
                 FileManInstance.ReadModuleFiles(folderBrowserDialog1.SelectedPath);
@@ -75,7 +80,6 @@ namespace ModularNoteTaker
                     Items.Add(m.MoudleCodeString + "-" + m.ModuleTitle);
                 }
                 ModuleListBox.DataSource = Items;
-                
             }
         }
 
@@ -91,7 +95,7 @@ namespace ModularNoteTaker
             DialogResult result = LoadDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                FileManInstance.loadJson(LoadDialog.FileName);
+                FileManInstance.Load(LoadDialog.FileName);
             }
             List<string> Items = new List<string>();
             foreach (Module m in FileManInstance.ModuleList1)
@@ -103,13 +107,18 @@ namespace ModularNoteTaker
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (ModuleListBox.Items.Count == 0)
+            {
+                MessageBox.Show("There are no items to save!","Error!");
+                return;
+            }
             SaveFileDialog SaveDialog = new SaveFileDialog();
             SaveDialog.Filter = "json Data File|*.json";
             SaveDialog.Title = "Save an json File";
             DialogResult result = SaveDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                FileManInstance.SaveJson(SaveDialog.FileName);
+                FileManInstance.Save(SaveDialog.FileName);
                 MessageBox.Show("File Saved Successfully");
             }
         }
@@ -135,6 +144,12 @@ namespace ModularNoteTaker
                 }
                 ModuleListBox.DataSource = Items;
             }
+            if (ModuleListBox.Items.Count == 0)
+            {
+                //if the last module is deleted then clear the note and assignment list boxes
+                AssignmentListBox.DataSource = null;
+                NoteListBox.DataSource = null;
+            }
         }
 
         private void NewNoteButton_Click(object sender, EventArgs e)
@@ -144,10 +159,19 @@ namespace ModularNoteTaker
                 InputDialog input = new InputDialog();
                 if (input.ShowDialog().Equals(DialogResult.OK))// makes sure the inputted results are valid
                 {
-                    Note note = new Note(input.NoteName, null);
                     int index = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());
                     Debug.WriteLine("Module Index" + index);
                     Module CurrentModule = ModuleList[index];
+                    foreach (Note n in CurrentModule.ModuleNotes)
+                    {
+                        if (string.Equals(n.NoteName, input.NoteName, StringComparison.OrdinalIgnoreCase))
+                        {
+                            //can not create new note with same name
+                            MessageBox.Show("Can not create a note with the same name!","Error!");
+                            return;
+                        }
+                    }
+                    Note note = new Note(input.NoteName, null);
                     CurrentModule.ModuleNotes.Add(note);
                     Debug.WriteLine(CurrentModule.ModuleNotes.Count);
                     updateSelectedModule();
@@ -176,12 +200,13 @@ namespace ModularNoteTaker
             }
             catch(Exception ex)
             {
-                MessageBox.Show("The note you are trying to read is invalid or may be corrupted", "Error!");
+                MessageBox.Show("The note you are trying to read is invalid or may be corrupted"+ex.Message, "Error!");
             }
         }
 
         private void DeleteNoteButton_Click(object sender, EventArgs e)
         {
+            if (NoteListBox.Items.Count == 0) return;
             int index = NoteListBox.FindStringExact(NoteListBox.SelectedItem.ToString());
             Debug.WriteLine(index);
             int moduleindex = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());
@@ -202,6 +227,7 @@ namespace ModularNoteTaker
 
         private void EditModuleButton_Click(object sender, EventArgs e)
         {
+            if (ModuleListBox.Items.Count == 0) return;
             int index = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());
             updateModuleList();
             ModuleEditor me = new ModuleEditor(ModuleList[index]);
@@ -225,7 +251,8 @@ namespace ModularNoteTaker
             Debug.WriteLine("Module Index" + moduleindex);
             Module CurrentModule = ModuleList[moduleindex];
             Debug.WriteLine("note amount" + CurrentModule.ModuleAssignments);
-            Note n = CurrentModule.ModuleAssignments[index].note;
+            Assignment assignment = CurrentModule.ModuleAssignments[index];
+            Note n = assignment.note;
             if (n.inUse)
             {
                 MessageBox.Show("Note is in use!", "Error!");
@@ -234,12 +261,19 @@ namespace ModularNoteTaker
             try
             {
                 NoteInterface ni = new NoteInterface(n, 0, FileManInstance);
-                ni.Text = n.NoteName;
+                if (assignment.isTest)
+                {
+                    ni.Text = ("In class test:  " + assignment.DueDate.ToShortDateString() + "  " + assignment.getTimetoDueDate() + " days remaining");
+                }
+                else
+                {
+                    ni.Text = ("Assignment:  " + assignment.DueDate.ToShortDateString() + "  " + assignment.getTimetoDueDate() + " days remaining");
+                }
                 ni.Show();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The note you are trying to read is invalid or may be corrupted", "Error");
+                MessageBox.Show("The note you are trying to read is invalid or may be corrupted"+ex.Message, "Error");
             }
         }
     }

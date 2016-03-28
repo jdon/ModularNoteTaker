@@ -31,7 +31,6 @@ namespace ModularNoteTaker
                 return 0;
             }
             return daysreamining;
-            //TODO return formatted string
         }
 
     }

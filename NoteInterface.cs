@@ -38,7 +38,17 @@ namespace ModularNoteTaker
         private void NoteInterface_FormClosing(object sender, FormClosingEventArgs e)
         {
             //auto save on closing of form
-            n.NoteContents = NoteTextBox.Rtf;
+            if(NoteTextBox.Rtf != null)
+            {
+                if (NoteTextBox.Rtf != n.NoteContents)
+                { 
+                    DialogResult result = MessageBox.Show("Do you want to save before exit?","Save?", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        n.NoteContents = NoteTextBox.Rtf;
+                    }
+                }
+            }
             n.inUse = false;
         }
 
