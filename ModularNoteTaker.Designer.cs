@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModularNoteTaker));
             this.ModuleListBox = new System.Windows.Forms.ListBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -37,7 +38,6 @@
             this.NoteListBox = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.AssignmentListBox = new System.Windows.Forms.ListBox();
-            this.NewModuleButton = new System.Windows.Forms.Button();
             this.DeleteModuleButton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,7 +87,7 @@
             // 
             // DeleteNoteButton
             // 
-            this.DeleteNoteButton.Location = new System.Drawing.Point(88, 317);
+            this.DeleteNoteButton.Location = new System.Drawing.Point(87, 313);
             this.DeleteNoteButton.Name = "DeleteNoteButton";
             this.DeleteNoteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteNoteButton.TabIndex = 2;
@@ -97,7 +97,7 @@
             // 
             // NewNoteButton
             // 
-            this.NewNoteButton.Location = new System.Drawing.Point(6, 317);
+            this.NewNoteButton.Location = new System.Drawing.Point(6, 313);
             this.NewNoteButton.Name = "NewNoteButton";
             this.NewNoteButton.Size = new System.Drawing.Size(75, 23);
             this.NewNoteButton.TabIndex = 1;
@@ -134,18 +134,9 @@
             this.AssignmentListBox.TabIndex = 0;
             this.AssignmentListBox.DoubleClick += new System.EventHandler(this.AssignmentListBox_DoubleClick);
             // 
-            // NewModuleButton
-            // 
-            this.NewModuleButton.Location = new System.Drawing.Point(13, 375);
-            this.NewModuleButton.Name = "NewModuleButton";
-            this.NewModuleButton.Size = new System.Drawing.Size(75, 23);
-            this.NewModuleButton.TabIndex = 2;
-            this.NewModuleButton.Text = "New Module";
-            this.NewModuleButton.UseVisualStyleBackColor = true;
-            // 
             // DeleteModuleButton
             // 
-            this.DeleteModuleButton.Location = new System.Drawing.Point(94, 374);
+            this.DeleteModuleButton.Location = new System.Drawing.Point(13, 374);
             this.DeleteModuleButton.Name = "DeleteModuleButton";
             this.DeleteModuleButton.Size = new System.Drawing.Size(90, 23);
             this.DeleteModuleButton.TabIndex = 3;
@@ -204,7 +195,7 @@
             // 
             // EditModuleButton
             // 
-            this.EditModuleButton.Location = new System.Drawing.Point(191, 374);
+            this.EditModuleButton.Location = new System.Drawing.Point(109, 374);
             this.EditModuleButton.Name = "EditModuleButton";
             this.EditModuleButton.Size = new System.Drawing.Size(75, 23);
             this.EditModuleButton.TabIndex = 5;
@@ -219,10 +210,10 @@
             this.ClientSize = new System.Drawing.Size(738, 420);
             this.Controls.Add(this.EditModuleButton);
             this.Controls.Add(this.DeleteModuleButton);
-            this.Controls.Add(this.NewModuleButton);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.ModuleListBox);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ModularNoteTaker";
             this.Text = "Modular Note Taker";
@@ -246,7 +237,6 @@
         private System.Windows.Forms.Button NewNoteButton;
         private System.Windows.Forms.ListBox NoteListBox;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button NewModuleButton;
         private System.Windows.Forms.Button DeleteModuleButton;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;

@@ -13,10 +13,10 @@ namespace ModularNoteTaker
         public String ModuleTitle { get; set; }
         public String ModuleSynopsis { get; set; }
         public String ModuleLearningOutcomes { get; set; }
-        public List<Assignment> ModuleAssignments { get; set; }
+        public Assignment[] ModuleAssignments { get; set; }
         public List<Note> ModuleNotes { get; set; }
 
-        public Module(String MoudleCode, String ModuleTitle, String ModuleSynopsis, String ModuleLearningOutcome, List<Assignment> Assignments, List<Note> Notes)
+        public Module(String MoudleCode, String ModuleTitle, String ModuleSynopsis, String ModuleLearningOutcome, Assignment[] Assignments, List<Note> Notes)
         {
             this.MoudleCodeString = MoudleCode;
             this.ModuleTitle = ModuleTitle;

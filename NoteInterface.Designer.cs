@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoteInterface));
             this.NoteTextBox = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -76,7 +77,7 @@
             this.FontButton.Name = "FontButton";
             this.FontButton.Size = new System.Drawing.Size(75, 23);
             this.FontButton.TabIndex = 8;
-            this.FontButton.Text = "Chnage font";
+            this.FontButton.Text = "Change font";
             this.FontButton.UseVisualStyleBackColor = true;
             this.FontButton.Click += new System.EventHandler(this.FontButton_Click);
             // 
@@ -88,6 +89,7 @@
             this.Controls.Add(this.FontButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.NoteTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NoteInterface";
             this.Text = "NoteInterface";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NoteInterface_FormClosing);

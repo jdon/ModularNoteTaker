@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace ModularNoteTaker
 {
@@ -41,7 +42,7 @@ namespace ModularNoteTaker
                    new System.IO.StreamReader(file);
                 while ((line = filereader.ReadLine()) != null)
                 {
-                    if (!String.IsNullOrWhiteSpace(line))
+                    if (!string.IsNullOrWhiteSpace(line))
                     {
                         if(line != ".")
                         {
@@ -58,63 +59,34 @@ namespace ModularNoteTaker
                 String ModuleLO2 = TextFile[8];
                 String ModuleLO3 = "";
                 String ModuleLO4 = "";
-                String ModuleAssignment1 = "";
-                String ModuleAssignment2 = "";
-                String ModuleAssignment3 = "";
-                Assignment as1 = null;
-                Assignment as2 = null;
-                Assignment as3 = null;
                 AssignmentStrings.Add(TextFile[10]);
                 AssignmentStrings.Add(TextFile[11]);
                 AssignmentStrings.Add(TextFile[12]);
                 AssignmentStrings.Add(TextFile[13]);
                 AssignmentStrings.Add(TextFile[14]);
                 AssignmentStrings.Add(TextFile[15]);
-                /*
-                if (TextFile[9].Contains("ASSIGNMENT"))
-                {
-                    // two learning outcomes
-                    AssignmentStrings.Add(TextFile[10]);
-                    AssignmentStrings.Add(TextFile[11]);
-                    AssignmentStrings.Add(TextFile[12]);
-                    ModuleAssignment1 = TextFile[10];
-                    ModuleAssignment2 = TextFile[11];
-                    ModuleAssignment3 = TextFile[12];
-                }
-                else if(TextFile[10].Contains("ASSIGNMENT"))
+                if(TextFile[10] != null && TextFile[10].Contains("ASSIGNMENT"))
                 {
                     ModuleLO3 = TextFile[9];
-                    AssignmentStrings.Add(TextFile[11]);
-                    AssignmentStrings.Add(TextFile[12]);
-                    AssignmentStrings.Add(TextFile[13]);
-                    ModuleAssignment1 = TextFile[11];
-                    ModuleAssignment2 = TextFile[12];
-                    ModuleAssignment3 = TextFile[13];
                     // three learning outcomes
                 }
-                else if (TextFile[11].Contains("ASSIGNMENT"))
+                else if (TextFile[11] != null && TextFile[11].Contains("ASSIGNMENT"))
                 {
                     ModuleLO3 = TextFile[9];
                     ModuleLO4 = TextFile[10];
-                    AssignmentStrings.Add(TextFile[12]);
-                    AssignmentStrings.Add(TextFile[13]);
-                    AssignmentStrings.Add(TextFile[14]);
-                    ModuleAssignment1 = TextFile[12];
-                    ModuleAssignment2 = TextFile[13];
-                    ModuleAssignment3 = TextFile[14];
                     // four learning outcomes
                 }
-                */
                 foreach (String assignmentstring in AssignmentStrings)
                 {
-                    Regex regex = new Regex(@"((0?[13578]|10|12)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[01]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1}))|(0?[2469]|11)(-|\/)(([1-9])|(0[1-9])|([12])([0-9]?)|(3[0]?))(-|\/)((19)([2-9])(\d{1})|(20)([01])(\d{1})|([8901])(\d{1})))$");
+                    Regex regex = new Regex(@"(((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1
+                    [012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|
+                    ((16|[2468][048]|[3579][26])00)|00)))$");
                     if (assignmentstring == null) break;
                     Match match = regex.Match(assignmentstring);
-                    Debug.WriteLine("loop");
                     if (match.Success)
                     {
-                        Debug.WriteLine("match");
-                        Debug.WriteLine(assignmentstring);
+                       // Debug.WriteLine("match");
+                        //Debug.WriteLine(assignmentstring);
                         bool istest = false;
                         DateTime date= Convert.ToDateTime(match.Value);
                         if (assignmentstring.Contains("w/c"))
@@ -124,9 +96,20 @@ namespace ModularNoteTaker
                         ModuleAssgnments.Add(new Assignment(istest, date, new Note(date.ToString(), "")));
                     }
                 }
+                Assignment[] ModuleArray = ModuleAssgnments.ToArray();
+               // Debug.WriteLine("before");
+                foreach (Assignment assign in ModuleArray)
+                {
+                   // Debug.WriteLine(assign.DueDate);
+                }
+                QuickSort(ModuleArray);
+                //Debug.WriteLine("after");
+                foreach (Assignment assign in ModuleArray)
+                {
+                    //Debug.WriteLine(assign.DueDate);
+                }
                 String ModuleLearningOutcomes = ModuleLO1 + "\r\n" + ModuleLO2 + "\r\n" + ModuleLO3 + "\r\n" + ModuleLO4;
- 
-                Module m = new Module(ModuleCode,ModuleTitle,ModuleSynopsis,ModuleLearningOutcomes, ModuleAssgnments, null);
+                Module m = new Module(ModuleCode,ModuleTitle,ModuleSynopsis,ModuleLearningOutcomes, ModuleArray, null);
                 ModuleList1.Add(m);
             }
 
@@ -137,21 +120,60 @@ namespace ModularNoteTaker
             using (StreamWriter sw = new StreamWriter(fs))
             using (JsonWriter jw = new JsonTextWriter(sw))
             {
-                jw.Formatting = Formatting.Indented;
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(jw, ModuleList1);
+                try
+                {
+                    jw.Formatting = Formatting.Indented;
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.Serialize(jw, ModuleList1);
+                } catch(Exception e)
+                {
+                MessageBox.Show("Unable to load file:"+e.Message,"Error!");
+                }
             }
         }
 
         public void loadJson(String FileLocation) {
-            StreamReader file = new StreamReader(FileLocation);
-            string jsonFile = file.ReadToEnd();
-            ModuleList = JsonConvert.DeserializeObject<List<Module>>(jsonFile);
-            file.Close();
+            try
+            {
+                StreamReader file = new StreamReader(FileLocation);
+                string jsonFile = file.ReadToEnd();
+                ModuleList = JsonConvert.DeserializeObject<List<Module>>(jsonFile);
+                file.Close();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Unable to load file:"+e.Message,"Error!");
+            }
         }
-
-        public void saveNote(Note n, Module m) {
-            //ModuleList1
+        public static void QuickSort(Assignment[] data)
+        {
+            // pre: 0 <= n <= data.length
+            // post: values in data[0 ... n -1] are in ascending order
+            Quick_Sort(data, 0, data.Length - 1);
+        }
+        public static void Quick_Sort(Assignment[] data, int left, int right)
+        {
+            int index, index2;
+            long pivot;
+            Assignment temp;
+            index = left;
+            index2 = right;
+            pivot = data[(left + right) / 2].DueDate.Ticks;
+            do
+            {
+                while ((data[index].DueDate.Ticks > pivot) && (index < right)) index++;
+                while ((pivot > data[index2].DueDate.Ticks) && (index2 > left)) index2--;
+                if (index <= index2)
+                {
+                    temp = data[index];
+                    data[index] = data[index2];
+                    data[index2] = temp;
+                    index++;
+                    index2--;
+                }
+            } while (index <= index2);
+            if (left < index2) Quick_Sort(data, left, index2);
+            if (index < right)Quick_Sort(data, index, right);
         }
     }
 }

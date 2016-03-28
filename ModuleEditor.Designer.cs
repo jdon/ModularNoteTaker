@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModuleEditor));
             this.ModuleName = new System.Windows.Forms.TextBox();
             this.CodeLabel = new System.Windows.Forms.Label();
             this.TitleLabel = new System.Windows.Forms.Label();
@@ -129,6 +130,7 @@
             this.Controls.Add(this.TitleLabel);
             this.Controls.Add(this.CodeLabel);
             this.Controls.Add(this.ModuleName);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModuleEditor";
             this.Text = "ModuleEditor";
             this.ResumeLayout(false);
