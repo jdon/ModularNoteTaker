@@ -180,6 +180,7 @@ namespace ModularNoteTaker
         }
         private void NoteListBox_DoubleClick_1(object sender, EventArgs e)
         {
+            if (NoteListBox.Items.Count == 0) return;// no items in the list so dont do anything
             int index = NoteListBox.FindStringExact(NoteListBox.SelectedItem.ToString());
             Debug.WriteLine(index);
             int moduleindex = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());
@@ -245,6 +246,7 @@ namespace ModularNoteTaker
 
         private void AssignmentListBox_DoubleClick(object sender, EventArgs e)
         {
+            if (AssignmentListBox.Items.Count == 0) return;// no items in the list so dont do anything
             int index = AssignmentListBox.FindStringExact(AssignmentListBox.SelectedItem.ToString());
             Debug.WriteLine(index);
             int moduleindex = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());

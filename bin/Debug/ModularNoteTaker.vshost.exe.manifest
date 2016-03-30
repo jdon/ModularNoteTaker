@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ModularNoteTaker.exe" size="2256344">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ModularNoteTaker.exe" size="2255360">
       <assemblyIdentity name="ModularNoteTaker" version="1.0.0.0" language="neutral" processorArchitecture="amd64" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MtgShMLQgFWaDateTUT98qmY9Bbka9Eggq9HxDoQ4DI=</dsig:DigestValue>
+        <dsig:DigestValue>q8qlBo9lXCDEXNX6tGmHm91SO9mkMpQZiYxL03spXCo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
