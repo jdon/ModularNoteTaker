@@ -17,3 +17,4 @@ C:\Users\jdon\Documents\Visual Studio 2015\Projects\ModularNoteTaker\ModularNote
 C:\Users\jdon\Documents\Visual Studio 2015\Projects\ModularNoteTaker\ModularNoteTaker\bin\Debug\ModularNoteTaker.application
 C:\Users\jdon\Documents\Visual Studio 2015\Projects\ModularNoteTaker\ModularNoteTaker\obj\Debug\ModularNoteTaker.exe.manifest
 C:\Users\jdon\Documents\Visual Studio 2015\Projects\ModularNoteTaker\ModularNoteTaker\obj\Debug\ModularNoteTaker.application
+C:\Users\jdon\Documents\Visual Studio 2015\Projects\ModularNoteTaker\ModularNoteTaker\obj\Debug\ModularNoteTaker.AssessmentsList.resources

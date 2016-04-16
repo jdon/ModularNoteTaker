@@ -278,5 +278,34 @@ namespace ModularNoteTaker
                 MessageBox.Show("The note you are trying to read is invalid or may be corrupted"+ex.Message, "Error");
             }
         }
+
+        private void assessmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // open new form
+            List<string> AssignmentItems = new List<string>();
+            foreach (Module currentmodule in ModuleList)
+            {
+                foreach(Assignment assignment in currentmodule.ModuleAssignments)
+                {
+                    if (assignment.isTest)
+                    {
+                        AssignmentItems.Add(currentmodule.ModuleTitle+": In class test:  " + assignment.DueDate.ToShortDateString() + "  " + assignment.getTimetoDueDate() + " days remaining");
+                    }
+                    else
+                    {
+                        AssignmentItems.Add(currentmodule.ModuleTitle+": Assignment:  " + assignment.DueDate.ToShortDateString() + "  " + assignment.getTimetoDueDate() + " days remaining");
+                    }
+                }
+                AssignmentItems.Add(" ");// add an empty line to make it look better
+            }
+            if(AssignmentItems.Count == 0)
+            {
+                MessageBox.Show("No asssesments found!");
+            }
+            else
+            {
+                new AssessmentsList(AssignmentItems).Show();
+            }
+        }
     }
 }

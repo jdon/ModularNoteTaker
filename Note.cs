@@ -19,6 +19,5 @@ namespace ModularNoteTaker
             //set in use to false when ever you create a new note
             this.inUse = false;
         }
-
     }
 }

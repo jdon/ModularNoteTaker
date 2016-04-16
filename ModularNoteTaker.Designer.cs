@@ -45,6 +45,8 @@
             this.savedDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.moduleFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assessmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditModuleButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -69,7 +71,7 @@
             this.tabControl1.Location = new System.Drawing.Point(279, 39);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(455, 329);
+            this.tabControl1.Size = new System.Drawing.Size(455, 379);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -80,14 +82,14 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(447, 303);
+            this.tabPage1.Size = new System.Drawing.Size(447, 353);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Notes";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // DeleteNoteButton
             // 
-            this.DeleteNoteButton.Location = new System.Drawing.Point(84, 274);
+            this.DeleteNoteButton.Location = new System.Drawing.Point(87, 316);
             this.DeleteNoteButton.Name = "DeleteNoteButton";
             this.DeleteNoteButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteNoteButton.TabIndex = 2;
@@ -97,7 +99,7 @@
             // 
             // NewNoteButton
             // 
-            this.NewNoteButton.Location = new System.Drawing.Point(3, 274);
+            this.NewNoteButton.Location = new System.Drawing.Point(6, 316);
             this.NewNoteButton.Name = "NewNoteButton";
             this.NewNoteButton.Size = new System.Drawing.Size(75, 23);
             this.NewNoteButton.TabIndex = 1;
@@ -110,7 +112,7 @@
             this.NoteListBox.FormattingEnabled = true;
             this.NoteListBox.Location = new System.Drawing.Point(7, 7);
             this.NoteListBox.Name = "NoteListBox";
-            this.NoteListBox.Size = new System.Drawing.Size(434, 251);
+            this.NoteListBox.Size = new System.Drawing.Size(434, 303);
             this.NoteListBox.TabIndex = 0;
             this.NoteListBox.DoubleClick += new System.EventHandler(this.NoteListBox_DoubleClick_1);
             // 
@@ -120,7 +122,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(447, 303);
+            this.tabPage2.Size = new System.Drawing.Size(447, 353);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assessments";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -130,13 +132,13 @@
             this.AssignmentListBox.FormattingEnabled = true;
             this.AssignmentListBox.Location = new System.Drawing.Point(7, 7);
             this.AssignmentListBox.Name = "AssignmentListBox";
-            this.AssignmentListBox.Size = new System.Drawing.Size(434, 251);
+            this.AssignmentListBox.Size = new System.Drawing.Size(434, 303);
             this.AssignmentListBox.TabIndex = 0;
             this.AssignmentListBox.DoubleClick += new System.EventHandler(this.AssignmentListBox_DoubleClick);
             // 
             // DeleteModuleButton
             // 
-            this.DeleteModuleButton.Location = new System.Drawing.Point(13, 374);
+            this.DeleteModuleButton.Location = new System.Drawing.Point(13, 377);
             this.DeleteModuleButton.Name = "DeleteModuleButton";
             this.DeleteModuleButton.Size = new System.Drawing.Size(90, 23);
             this.DeleteModuleButton.TabIndex = 3;
@@ -147,7 +149,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.viewToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(738, 24);
@@ -169,33 +172,48 @@
             this.savedDataToolStripMenuItem,
             this.moduleFilesToolStripMenuItem});
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             // 
             // savedDataToolStripMenuItem
             // 
             this.savedDataToolStripMenuItem.Name = "savedDataToolStripMenuItem";
-            this.savedDataToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.savedDataToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.savedDataToolStripMenuItem.Text = "Saved Data";
             this.savedDataToolStripMenuItem.Click += new System.EventHandler(this.savedDataToolStripMenuItem_Click);
             // 
             // moduleFilesToolStripMenuItem
             // 
             this.moduleFilesToolStripMenuItem.Name = "moduleFilesToolStripMenuItem";
-            this.moduleFilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moduleFilesToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
             this.moduleFilesToolStripMenuItem.Text = "Module Files";
             this.moduleFilesToolStripMenuItem.Click += new System.EventHandler(this.moduleFilesToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
+            // viewToolStripMenuItem
+            // 
+            this.viewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.assessmentsToolStripMenuItem});
+            this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Text = "View";
+            // 
+            // assessmentsToolStripMenuItem
+            // 
+            this.assessmentsToolStripMenuItem.Name = "assessmentsToolStripMenuItem";
+            this.assessmentsToolStripMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.assessmentsToolStripMenuItem.Text = "Assessments";
+            this.assessmentsToolStripMenuItem.Click += new System.EventHandler(this.assessmentsToolStripMenuItem_Click);
+            // 
             // EditModuleButton
             // 
-            this.EditModuleButton.Location = new System.Drawing.Point(109, 374);
+            this.EditModuleButton.Location = new System.Drawing.Point(109, 377);
             this.EditModuleButton.Name = "EditModuleButton";
             this.EditModuleButton.Size = new System.Drawing.Size(75, 23);
             this.EditModuleButton.TabIndex = 5;
@@ -246,6 +264,8 @@
         private System.Windows.Forms.ListBox AssignmentListBox;
         private System.Windows.Forms.Button EditModuleButton;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assessmentsToolStripMenuItem;
     }
 }
 

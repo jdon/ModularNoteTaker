@@ -30,7 +30,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>x64</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -83,6 +83,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssessmentsList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssessmentsList.Designer.cs">
+      <DependentUpon>AssessmentsList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Assignment.cs" />
     <Compile Include="FileMan.cs" />
     <Compile Include="ModularNoteTaker.cs">
@@ -119,6 +125,9 @@
     <Compile Include="WebBrowserForm.Designer.cs">
       <DependentUpon>WebBrowserForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AssessmentsList.resx">
+      <DependentUpon>AssessmentsList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ModularNoteTaker.resx">
       <DependentUpon>ModularNoteTaker.cs</DependentUpon>
     </EmbeddedResource>
