@@ -11,16 +11,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ModularNoteTaker
+namespace ModuleNoteTaker
 {
-    public partial class ModularNoteTaker : Form
+    public partial class ModuleNoteTaker : Form
     {
-        FileMan FileManInstance;
+        FileManager FileManInstance;
         private List<Module> ModuleList;
-        public ModularNoteTaker()
+        public ModuleNoteTaker()
         {
             InitializeComponent();
-            FileManInstance = new FileMan();
+            FileManInstance = new FileManager();
             ModuleList = FileManInstance.ModuleList1;
         }
         private void updateModuleList()
@@ -154,29 +154,46 @@ namespace ModularNoteTaker
 
         private void NewNoteButton_Click(object sender, EventArgs e)
         {
+            Debug.WriteLine("****************************");
+            Debug.WriteLine("Sender" + sender.ToString() + "Event Arguments" + e.ToString()); // method coverage
             if (ModuleListBox.Items.Count != 0)
             {
-                InputDialog input = new InputDialog();
-                if (input.ShowDialog().Equals(DialogResult.OK))// makes sure the inputted results are valid
+                InputDialog input = new InputDialog(); // create an input form for the name of the note
+                Debug.WriteLine("Input Dialog Created"); // method covergae
+                DialogResult ds = input.ShowDialog();
+                if (ds.Equals(DialogResult.OK))// makes sure the inputted results are valid
                 {
+                    Debug.WriteLine("DialogResult equal to ok");//branch coverage
                     int index = ModuleListBox.FindStringExact(ModuleListBox.SelectedItem.ToString());
-                    Debug.WriteLine("Module Index" + index);
+                    Debug.WriteLine("Module Index" + index); // statement coverage
                     Module CurrentModule = ModuleList[index];
+                    Debug.WriteLine("Current Module" + CurrentModule.ModuleTitle); // statement coverage
                     foreach (Note n in CurrentModule.ModuleNotes)
                     {
                         if (string.Equals(n.NoteName, input.NoteName, StringComparison.OrdinalIgnoreCase))
                         {
                             //can not create new note with same name
-                            MessageBox.Show("Can not create a note with the same name!","Error!");
+                            Debug.WriteLine("Note name the same");//branch coverage
+                            MessageBox.Show("Can not create a note with the same name!", "Error!");
                             return;
                         }
                     }
                     Note note = new Note(input.NoteName, null);
+                    Debug.WriteLine("Note Name" + input.NoteName);// statement coverage
+                    Debug.WriteLine("no similiar notes");//branch coverage
                     CurrentModule.ModuleNotes.Add(note);
-                    Debug.WriteLine(CurrentModule.ModuleNotes.Count);
                     updateSelectedModule();
                 }
+                else
+                {
+                    Debug.WriteLine("DialogResult not equal to ok");//branch coverage
+                }
             }
+            else
+            {
+                Debug.WriteLine("Module list is empty");//branch coverage
+            }
+            Debug.WriteLine("****************************");
         }
         private void NoteListBox_DoubleClick_1(object sender, EventArgs e)
         {
@@ -284,7 +301,8 @@ namespace ModularNoteTaker
             // open new form
             List<string> AssignmentItems = new List<string>();
             foreach (Module currentmodule in ModuleList)
-            {
+            { 
+                // 
                 foreach(Assignment assignment in currentmodule.ModuleAssignments)
                 {
                     if (assignment.isTest)

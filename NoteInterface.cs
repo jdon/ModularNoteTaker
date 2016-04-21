@@ -9,15 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ModularNoteTaker
+namespace ModuleNoteTaker
 {
     public partial class 
         NoteInterface : Form
     {
-        private FileMan fm;
+        private FileManager fm;
         private Note n;
 
-        public NoteInterface(Note n, int index,FileMan fm)
+        public NoteInterface(Note n, int index,FileManager fm)
         {
             InitializeComponent();
             this.fm = fm;

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ModularNoteTaker.Properties
+namespace ModuleNoteTaker.Properties
 {
 
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ModularNoteTaker
+namespace ModuleNoteTaker
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace ModularNoteTaker
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ModularNoteTaker());
+            Application.Run(new ModuleNoteTaker());
         }
     }
 }

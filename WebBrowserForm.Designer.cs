@@ -1,4 +1,4 @@
-﻿namespace ModularNoteTaker
+﻿namespace ModuleNoteTaker
 {
     partial class WebBrowserForm
     {

@@ -9,9 +9,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ModularNoteTaker
+namespace ModuleNoteTaker
 {
-    public class FileMan
+    public class FileManager
     {
         List<Module> ModuleList = new List<Module>();
         private String ModuleCode = "";

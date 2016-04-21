@@ -59,15 +59,5 @@ namespace ModularNoteTaker.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap save_icon_silhouette {
-            get {
-                object obj = ResourceManager.GetObject("save_icon_silhouette", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace ModularNoteTaker
+﻿namespace ModuleNoteTaker
 {
-    partial class ModularNoteTaker
+    partial class ModuleNoteTaker
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModularNoteTaker));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModuleNoteTaker));
             this.ModuleListBox = new System.Windows.Forms.ListBox();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -221,7 +221,7 @@
             this.EditModuleButton.UseVisualStyleBackColor = true;
             this.EditModuleButton.Click += new System.EventHandler(this.EditModuleButton_Click);
             // 
-            // ModularNoteTaker
+            // ModuleNoteTaker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -233,8 +233,8 @@
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "ModularNoteTaker";
-            this.Text = "Modular Note Taker";
+            this.Name = "ModuleNoteTaker";
+            this.Text = "Mod Note";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);

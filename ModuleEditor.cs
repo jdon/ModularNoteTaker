@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ModularNoteTaker
+namespace ModuleNoteTaker
 {
     public partial class ModuleEditor : Form
     {

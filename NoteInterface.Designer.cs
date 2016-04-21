@@ -1,4 +1,4 @@
-﻿namespace ModularNoteTaker
+﻿namespace ModuleNoteTaker
 {
     partial class NoteInterface
     {
@@ -53,7 +53,6 @@
             // 
             // button1
             // 
-            this.button1.Image = global::ModularNoteTaker.Properties.Resources.save_icon_silhouette;
             this.button1.Location = new System.Drawing.Point(13, 4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);

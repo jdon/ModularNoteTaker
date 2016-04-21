@@ -8,12 +8,12 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ModularNoteTaker</RootNamespace>
-    <AssemblyName>ModularNoteTaker</AssemblyName>
+    <AssemblyName>ModuleNoteTaker</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <PublishUrl>C:\Users\jdon\Desktop\</PublishUrl>
+    <PublishUrl>C:\Users\jdon\Downloads\APPShop%28v1.0.24%29\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>5</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -90,12 +90,12 @@
       <DependentUpon>AssessmentsList.cs</DependentUpon>
     </Compile>
     <Compile Include="Assignment.cs" />
-    <Compile Include="FileMan.cs" />
-    <Compile Include="ModularNoteTaker.cs">
+    <Compile Include="FileManager.cs" />
+    <Compile Include="ModuleNoteTaker.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModularNoteTaker.Designer.cs">
-      <DependentUpon>ModularNoteTaker.cs</DependentUpon>
+    <Compile Include="ModuleNoteTaker.Designer.cs">
+      <DependentUpon>ModuleNoteTaker.cs</DependentUpon>
     </Compile>
     <Compile Include="InputDialog.cs">
       <SubType>Form</SubType>
@@ -119,6 +119,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="WebBrowserForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,8 +133,8 @@
     <EmbeddedResource Include="AssessmentsList.resx">
       <DependentUpon>AssessmentsList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModularNoteTaker.resx">
-      <DependentUpon>ModularNoteTaker.cs</DependentUpon>
+    <EmbeddedResource Include="ModuleNoteTaker.resx">
+      <DependentUpon>ModuleNoteTaker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InputDialog.resx">
       <DependentUpon>InputDialog.cs</DependentUpon>
@@ -142,14 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="WebBrowserForm.resx">
       <DependentUpon>WebBrowserForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -168,10 +168,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\save-icon-silhouette.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Icons\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
